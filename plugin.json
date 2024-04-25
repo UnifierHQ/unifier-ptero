@@ -1,13 +1,13 @@
 {
-  "id": "template",
-  "name": "Plugin Template",
-  "description": "This is a template for Unifier plugins.",
+  "id": "pterodactyl",
+  "name": "Pterodactyl",
+  "description": "Plugin to manage Unifier on Pterodactyl servers",
   "version": "v1.0.0",
   "release": 0,
   "minimum": 36,
   "shutdown": false,
   "modules": [
-    "template.py"
+    "ptero.py"
   ],
   "utils": [
   ]
