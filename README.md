@@ -9,7 +9,7 @@ This is a plugin for Unifier which allows certain functions to work on Pterodact
 will allow you to shut Unifier down without having Pterodactyl unintentionally start the bot back up.
 
 ## Requirements
-Unifier v1.1.12 or newer is required.
+Unifier v1.2.0 or newer is required.
 
 ## Setup
 This cannot be installed without modifying Unifier yet. A Plugin installation system will be available soon.
