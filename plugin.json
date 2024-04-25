@@ -4,7 +4,7 @@
   "description": "Plugin to manage Unifier on Pterodactyl servers",
   "version": "v1.0.0",
   "release": 0,
-  "minimum": 38,
+  "minimum": 36,
   "requirements": [
     "py-dactyl==2.0.*"
   ],
