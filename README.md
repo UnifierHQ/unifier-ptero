@@ -1,55 +1,22 @@
-# Unifier plugin template
-This is a template repository you can use to write plugins for Unifier.
+# Unifier Pterodactyl Plugin
+A plugin for Unifier to manage Pterodactyl servers
 
 > [!NOTE]
-> Once you have read through everything below and know what you're doing, you're free to replace
-> this README file with whatever you want.
+> This is a Unifier **plugin**! To access Unifier, go [here](https://github.com/greeeen-dev/unifier).
 
-## plugin.json
-plugin.json contains the metadata of your plugin, such as the plugin ID, name, etc. Unifier will
-read this file on boot, so it knows which files to load to load your plugin.
+## What is this?
+This is a plugin for Unifier which allows certain functions to work on Pterodactyl servers. For example, the plugin 
+will allow you to shut Unifier down without having Pterodactyl unintentionally start the bot back up.
 
-### `id`
-Plugin ID. Unifier uses this as the identifier for your plugin, and no plugin
-installed to your bot may have the same ID. Users will need to specify the ID as the plugin when
-running install, uninstall, and upgrade for plugins.
+## Requirements
+Unifier v1.1.12 or newer is required.
 
-### `name`
-Plugin name. Unlike plugin IDs, this can be whatever you desire.
+## Setup
+This cannot be installed without modifying Unifier yet. A Plugin installation system will be available soon.
 
-### `description`
-Plugin description. Describe what your plugin does here.
+## License
+Unifier Pterodactyl Plugin is licensed under the AGPLv3. If you wish to use its source code, please read the license 
+carefully before doing so.
 
-### `version`
-Plugin version. We recommend you follow [semantic versioning](https://semver.org/) for this.
-
-### `release`
-Plugin release number. Unifier will use this to tell if the plugin is up to date or not.
-
-### `minimum`
-The minimum Unifier release required to use your plugin.
-
-### `shutdown`
-If your plugin needs special code being ran before being unloaded, set this to true.
-> [!WARNING]
-> If this is true, your plugin will not be able to be unloaded without a `[plugin_id]_check.py`
-> file. You will need to specify this in the `utils` key.
-
-### `modules`
-Plugin modules. All files in here will be loaded as an extension when loading the plugin.
-
-### `utils`
-Plugin utility scripts. If `shutdown` is true, you **must** have `[plugin_id]_check.py` in here.
-
-----
-
-## Examples
-Need an example to know what you need to have in your repository? You might want to check out
-[unifier-revolt](https://github.com/UnifierHQ/unifier-revolt).
-
-## Installing plugins
-To install a plugin, run the `install <repo_url>` command. This will install a plugin from the
-Git repository you specified.
-
-## Licensing
-As Unifier is AGPLv3 licensed, your plugin must be licensed AGPLv3 as well.
+## Note
+Unifier Micro and UnifierHQ developers are not affiliated or associated with, or endorsed by Pterodactyl.
