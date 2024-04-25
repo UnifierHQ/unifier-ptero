@@ -1,0 +1,14 @@
+{
+  "id": "template",
+  "name": "Plugin Template",
+  "description": "This is a template for Unifier plugins.",
+  "version": "v1.0.0",
+  "release": 0,
+  "minimum": 36,
+  "shutdown": false,
+  "modules": [
+    "template.py"
+  ],
+  "utils": [
+  ]
+}
