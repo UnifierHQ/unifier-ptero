@@ -12,7 +12,7 @@ will allow you to shut Unifier down without having Pterodactyl unintentionally s
 Unifier v1.2.0 or newer is required.
 
 ## Setup
-This cannot be installed without modifying Unifier yet. A Plugin installation system will be available soon.
+Run `u!install https://github.com/UnifierHQ/unifier-ptero`
 
 ## License
 Unifier Pterodactyl Plugin is licensed under the AGPLv3. If you wish to use its source code, please read the license 
