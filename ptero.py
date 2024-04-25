@@ -23,7 +23,11 @@ class Ptero(commands.Cog):
 
     async def cog_before_invoke(self, ctx):
         if not self.ptero or not self.ptero_server:
-            return await ctx.send('Pterodactyl API is not configured properly!\nMake sure there\'s a `ptero_endpoint` and `ptero_server_id` present in config.json')
+            await ctx.send('Pterodactyl API is not configured properly!\nMake sure there\'s a `ptero_endpoint` and `ptero_server_id` present in config.json')
+            return False
+
+    async def cog_command_error(self, ctx, error):
+        return
 
     @commands.command(hidden=True)
     async def pshutdown(self, ctx):
