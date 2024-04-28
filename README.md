@@ -1,6 +1,9 @@
 # Unifier Pterodactyl Plugin
 A plugin for Unifier to manage Pterodactyl servers
 
+> [!CAUTION]
+> This plugin will be fully rewrited soon, is not recommended to use it at the moment.
+
 > [!WARNING]
 > This is beta software. Things may not work as intended.
 
