@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import nextcord
+from nextcord.ext import commands
 from utils import log
 from pydactyl import PterodactylClient
 import os
@@ -45,6 +45,8 @@ class Ptero(commands.Cog):
     @commands.command(hidden=True)
     async def pshutdown(self, ctx):
         """Gracefully shuts down the Pterodactyl server."""
+        self.bot.db.save_data()
+        await self.bot.bridge.backup(limit=10000)
         await self._send_power_action(ctx, 'stop')
 
     @commands.command(hidden=True)
@@ -55,6 +57,8 @@ class Ptero(commands.Cog):
     @commands.command(hidden=True)
     async def prestart(self, ctx):
         """Restarts the Pterodactyl server."""
+        self.bot.db.save_data()
+        await self.bot.bridge.backup(limit=10000)
         await self._send_power_action(ctx, 'restart')
 
 def setup(bot):
