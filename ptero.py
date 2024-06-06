@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import nextcord
+from nextcord.ext import commands
 from utils import log
 from pydactyl import PterodactylClient
 import os
@@ -42,9 +42,64 @@ class Ptero(commands.Cog):
             self.logger.error(f'Failed to {action} server: {e}')
             await ctx.send(f'Failed to {action} server.')
 
+    async def preunload(self, extension):
+        """Performs necessary steps before unloading."""
+        info = None
+        plugin_name = None
+        if extension.startswith('cogs.'):
+            extension = extension.replace('cogs.','',1)
+        for plugin in os.listdir('plugins'):
+            if extension + '.json' == plugin:
+                plugin_name = plugin[:-5]
+                try:
+                    with open('plugins/' + plugin) as file:
+                        info = json.load(file)
+                except:
+                    continue
+                break
+            else:
+                try:
+                    with open('plugins/' + plugin) as file:
+                        info = json.load(file)
+                except:
+                    continue
+                if extension + '.py' in info['modules']:
+                    plugin_name = plugin[:-5]
+                    break
+        if not plugin_name:
+            return
+        if plugin_name == 'system':
+            return
+        if not info:
+            raise ValueError('Invalid plugin')
+        if not info['shutdown']:
+            return
+        script = importlib.import_module('utils.' + plugin_name + '_check')
+        await script.check(self.bot)
+
     @commands.command(hidden=True)
     async def pshutdown(self, ctx):
         """Gracefully shuts down the Pterodactyl server."""
+        if not ctx.author.id == self.bot.config['owner']:
+            return
+        self.logger.info("Attempting graceful shutdown...")
+        self.bot.bridge.backup_lock = True
+        try:
+            for extension in self.bot.extensions:
+                await self.preunload(extension)
+            self.logger.info("Backing up message cache...")
+            self.bot.db.save_data()
+            self.bot.bridge.backup_lock = False
+            await self.bot.bridge.backup(limit=10000)
+            self.logger.info("Backup complete")
+        except:
+            self.logger.exception("Graceful shutdown failed")
+            await ctx.send('Shutdown failed')
+            return
+        self.logger.info("Closing bot session")
+        await self.bot.session.close()
+        self.logger.info("Shutdown complete")
+        await self.bot.close()
         await self._send_power_action(ctx, 'stop')
 
     @commands.command(hidden=True)
@@ -55,6 +110,26 @@ class Ptero(commands.Cog):
     @commands.command(hidden=True)
     async def prestart(self, ctx):
         """Restarts the Pterodactyl server."""
+        if not ctx.author.id == self.bot.config['owner']:
+            return
+        self.logger.info("Attempting graceful shutdown...")
+        self.bot.bridge.backup_lock = True
+        try:
+            for extension in self.bot.extensions:
+                await self.preunload(extension)
+            self.logger.info("Backing up message cache...")
+            self.bot.db.save_data()
+            self.bot.bridge.backup_lock = False
+            await self.bot.bridge.backup(limit=10000)
+            self.logger.info("Backup complete")
+        except:
+            self.logger.exception("Graceful shutdown failed")
+            await ctx.send('Shutdown failed')
+            return
+        self.logger.info("Closing bot session")
+        await self.bot.session.close()
+        self.logger.info("Shutdown complete")
+        await self.bot.close()
         await self._send_power_action(ctx, 'restart')
 
 def setup(bot):

@@ -1,9 +1,6 @@
 # Unifier Pterodactyl Plugin
 A plugin for Unifier to manage Pterodactyl servers
 
-> [!CAUTION]
-> ItsAsheer / NullyIsHere (not me), forgot to add cache backup. DO NOT USE THIS PLS.
-
 > [!WARNING]
 > This is beta software. Things may not work as intended.
 
