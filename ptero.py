@@ -12,7 +12,7 @@ class Ptero(commands.Cog):
         self.bot = bot
         self.ptero = None
         self.ptero_server_id = os.getenv('PTERO_SERVER_ID')
-        self.logger = log.build_logger(self.bot.package, 'sysmgr', self.bot.loglevel)
+        self.logger = log.buildlogger(self.bot.package, 'sysmgr', self.bot.loglevel)
 
         try:
             load_dotenv()
